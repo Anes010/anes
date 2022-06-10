@@ -32,7 +32,7 @@ from driver.filters import command, other_filters
 
 
 keyboard = InlineKeyboardMarkup(
-    [[InlineKeyboardButton("-› اެغِݪاެقِ", callback_data="set_close")]]
+    [[InlineKeyboardButton("-› اغلاق", callback_data="set_close")]]
 )
 
 
