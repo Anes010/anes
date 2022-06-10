@@ -39,7 +39,7 @@ from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant, ChatAdmi
 
 
 @Client.on_message(
-    command(["انضم", f"ادخل"]) & other_filters
+    command(["/انضم", f"/ادخل"]) & other_filters
 )
 @check_blacklist()
 @authorized_users_only
@@ -62,7 +62,7 @@ async def join_chat(c: Client, m: Message):
 
 
 @Client.on_message(
-    command(["غادر", f"اطلع"]) & other_filters
+    command(["/غادر", f"/اطلع"]) & other_filters
 )
 @check_blacklist()
 @authorized_users_only
@@ -80,7 +80,7 @@ async def leave_chat(c :Client, m: Message):
         return await c.send_message(chat_id, "🦴 غادر منزمان لتلح")
 
 
-@Client.on_message(command(["leaveall", f"leaveall@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["/غادر من الكل", f"leaveall@{BOT_USERNAME}"]) & ~filters.edited)
 @bot_creator
 async def leave_all(c: Client, message: Message):
     if message.from_user.id not in SUDO_USERS:
@@ -108,12 +108,12 @@ async def leave_all(c: Client, message: Message):
     )
 
 
-@Client.on_message(command(["اصعد", f"افتح"]) & other_filters)
+@Client.on_message(command(["/اصعد", f"/افتح"]) & other_filters)
 @check_blacklist()
 @authorized_users_only
 async def start_group_call(c: Client, m: Message):
     chat_id = m.chat.id
-    msg = await c.send_message(chat_id, "`❤️‍🔥يَاެݪله ࢪاެح اެفَتح مَكَالمة...`")
+    msg = await c.send_message(chat_id, "`يَاެݪله ࢪاެح اެفَتح مَكَالمة...`")
     try:
         peer = await user.resolve_peer(chat_id)
         await user.send(
@@ -128,23 +128,23 @@ async def start_group_call(c: Client, m: Message):
         await msg.edit_text("🦴 تَم فَتحت مَكَاެݪمَة صَعدۅ !")
     except ChatAdminRequired:
         await msg.edit_text(
-            "كمشرف في المجموعة مع صلاحية لاستخدام هذه الامر ، عليك رفع حساب المساعد :\n\n-›  ❤️‍🔥 الدردشة الصوتية"
+            "كمشرف في المجموعة مع صلاحية لاستخدام هذه الامر ، عليك رفع حساب المساعد :\n\n-›   الدردشة الصوتية"
         )
 
 
-@Client.on_message(command(["انزل", f"سدها"]) & other_filters)
+@Client.on_message(command(["/انزل", f"/سدها"]) & other_filters)
 @check_blacklist()
 @authorized_users_only
 async def stop_group_call(c: Client, m: Message):
     chat_id = m.chat.id
-    msg = await c.send_message(chat_id, "`🦎 يَاެݪݪهَ ࢪاެحَ اެسِدَ المَكَاެݪمَةَ...`")
+    msg = await c.send_message(chat_id, "` يَاެݪݪهَ ࢪاެحَ اެسِدَ المَكَاެݪمَةَ...`")
     try:
         if not (
             group_call := (
                 await get_calls(m, err_msg="group call not active")
             )
         ):
-            await msg.edit_text("🦎 سديتها منزمان")
+            await msg.edit_text(" سديتها منزمان")
             return
         await user.send(
             DiscardGroupCall(
@@ -155,7 +155,7 @@ async def stop_group_call(c: Client, m: Message):
     except Exception as e:
         if "GROUPCALL_FORBIDDEN" in str(e):
             await msg.edit_text(
-                "كمشرف في المجموعة مع صلاحية لاستخدام هذه الامر ، عليك رفع حساب المساعد :\n\n-›  ❤️‍🔥 الدردشة الصوتية"
+                "كمشرف في المجموعة مع صلاحية لاستخدام هذه الامر ، عليك رفع حساب المساعد :\n\n-›   الدردشة الصوتية"
             )
 
 
