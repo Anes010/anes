@@ -108,9 +108,9 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
         )
     if replied.video or replied.document:
         if not link:
-            loser = await replied.reply("❤️‍🔥تَحمَيݪ اެݪمݪف...")
+            loser = await replied.reply("تَحمَيݪ اެݪمݪف...")
         else:
-            loser = await m.reply("❤️‍🔥تَحمَيݪ اެݪمݪف...")
+            loser = await m.reply("تَحمَيݪ اެݪمݪف...")
         dl = await replied.download()
         link = replied.link
         songname = "video"
@@ -135,7 +135,7 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
             songname = "video"
 
         if chat_id in QUEUE:
-            await loser.edit("❤️‍🔥 تَتم اެݪاضافَة...")
+            await loser.edit(" تَتم اެݪاضافَة...")
             gcname = m.chat.title
             ctitle = await CHAT_TITLE(gcname)
             title = songname
@@ -157,7 +157,7 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
             remove_if_exists(image)
         else:
             try:
-                await loser.edit("❤️‍🔥 يَتمَ اެݪتشغِيݪ اެلانِ...")
+                await loser.edit("يَتمَ اެݪتشغِيݪ اެلانِ...")
                 gcname = m.chat.title
                 ctitle = await CHAT_TITLE(gcname)
                 title = songname
@@ -205,7 +205,7 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
         )
 
 
-@Client.on_message(command(["فيديو", f"فيد"]) & other_filters)
+@Client.on_message(command(["/فيديو", f"/فيد"]) & other_filters)
 @check_blacklist()
 @require_admin(permissions=["can_manage_voice_chats", "can_delete_messages", "can_invite_users"], self=True)
 async def video_stream(c: Client, m: Message):
@@ -222,7 +222,7 @@ async def video_stream(c: Client, m: Message):
         b = await c.get_chat_member(chat_id, ubot)
         if b.status == "banned":
             try:
-                await m.reply_text("المساعد محظور ، ارفع الحظر عنة واكتب .تحديث وبعدين اكتب .انضم حتى تكدر تشغل 🤍")
+                await m.reply_text("المساعد محظور ، ارفع الحظر عنة واكتب .تحديث وبعدين اكتب ./انضم حتى تكدر تشغل 🤍")
                 await remove_active_chat(chat_id)
             except BaseException:
                 pass
@@ -265,7 +265,7 @@ async def video_stream(c: Client, m: Message):
                 )
             else:
                 Q = 720
-                loser = await c.send_message(chat_id, "❤️‍🔥 جَاެࢪي اެݪبَحثَ...")
+                loser = await c.send_message(chat_id, " جَاެࢪي اެݪبَحثَ...")
                 query = m.text.split(None, 1)[1]
                 search = ytsearch(query)
                 amaze = HighQualityVideo()
@@ -286,7 +286,7 @@ async def video_stream(c: Client, m: Message):
                         await loser.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
                     else:
                         if chat_id in QUEUE:
-                            await loser.edit("❤️‍🔥 تَتم اެݪاضافَة...")
+                            await loser.edit("تَتم اެݪاضافَة...")
                             pos = add_to_queue(chat_id, songname, ytlink, url, "video", Q)
                             await loser.delete()
                             requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
@@ -299,7 +299,7 @@ async def video_stream(c: Client, m: Message):
                             remove_if_exists(image)
                         else:
                             try:
-                                await loser.edit("❤️‍🔥 يَتمَ اެݪتشغِيݪ اެلانِ...")
+                                await loser.edit(" يَتمَ اެݪتشغِيݪ اެلانِ...")
                                 await music_on(chat_id)
                                 await add_active_chat(chat_id)
                                 await calls.join_group_call(
@@ -344,7 +344,7 @@ async def video_stream(c: Client, m: Message):
                 continue
         else:
             Q = 720
-            loser = await c.send_message(chat_id, "❤️‍🔥 جَاެࢪي اެݪبَحثَ...")
+            loser = await c.send_message(chat_id, " جَاެࢪي اެݪبَحثَ...")
             query = m.text.split(None, 1)[1]
             search = ytsearch(query)
             amaze = HighQualityVideo()
@@ -365,7 +365,7 @@ async def video_stream(c: Client, m: Message):
                     await loser.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
                 else:
                     if chat_id in QUEUE:
-                        await loser.edit("❤️‍🔥 تَتم اެݪاضافَة...")
+                        await loser.edit(" تَتم اެݪاضافَة...")
                         pos = add_to_queue(chat_id, songname, ytlink, url, "video", Q)
                         await loser.delete()
                         requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
@@ -378,7 +378,7 @@ async def video_stream(c: Client, m: Message):
                         remove_if_exists(image)
                     else:
                         try:
-                            await loser.edit("❤️‍🔥 يَتمَ اެݪتشغِيݪ اެلانِ...")
+                            await loser.edit(" يَتمَ اެݪتشغِيݪ اެلانِ...")
                             await music_on(chat_id)
                             await add_active_chat(chat_id)
                             await calls.join_group_call(
