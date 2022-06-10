@@ -84,20 +84,20 @@ async def start_(c: Client, message: Message):
     user_id = message.from_user.id
     await add_served_user(user_id)
     await message.reply_text(
-        f"""ههݪاެ حبيب {message.from_user.mention()} ❤️‍🔥\n
-اެناެ بَۅت بَمميࢪ࣪اެتَ متَعدَدةَ ݪتشغِيݪ اެݪاغاެنِي فَي اެݪمَجمَۅعاتَ 🥇.
+        f"""ههݪاެ حبيب {message.from_user.mention()} \n
+اانا بوت ذو مميزات متعدده لتشغيل الاغاني.
 
--› [ᔕOᑌᖇᑕE ᒍEᑭTᕼOᑎ 𖢅](http://t.me/jepthon)
+-› [ᔕOCHANESL OF THE BOT 𖢅](http://t.me/N_B_10)
 """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🥇 اެضفني اެݪى مجمۅعتَك 🥇", url=f"https://t.me/{me_bot.username}?startgroup=true")
+                    InlineKeyboardButton("ضيفني للكروب", url=f"https://t.me/{me_bot.username}?startgroup=true")
                 ],[
-                    InlineKeyboardButton("طࢪيقة اެݪتشغيݪ", callback_data="user_guide")
+                    InlineKeyboardButton("طريقه التشغيل", callback_data="user_guide")
                 ],[
-                    InlineKeyboardButton("اެݪاۅاެمࢪ", callback_data="command_list"),
-                    InlineKeyboardButton("🦎 اެݪمطَۅࢪ", url=f"https://t.me/{OWNER_USERNAME}")                    
+                    InlineKeyboardButton("الاوامر", callback_data="command_list"),
+                    InlineKeyboardButton("المطور", url=f"https://t.me/{OWNER_USERNAME}")                    
                 ],
             ]
         ),
@@ -106,7 +106,7 @@ async def start_(c: Client, message: Message):
 
 
 @Client.on_message(
-    command(["الاوامر", f"alive@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+    command(["/الاوامر", f"alive@{BOT_USERNAME}"]) & filters.group & ~filters.edited
 )
 @check_blacklist()
 async def alive(c: Client, message: Message):
@@ -117,11 +117,11 @@ async def alive(c: Client, message: Message):
     buttons = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("🥇 اوامر البوت ", callback_data="user_command"),
+                InlineKeyboardButton(" اوامر البوت ", callback_data="user_command"),
             ]
         ]
     )
-    text = f"**- تابع الاوامر في الاسفل ↓ **"
+    text = f"**- تابع الاوامر في الاسفل ↓ قناه البوت @N_B_10 **"
     await c.send_photo(
         chat_id,
         photo=f"https://te.legra.ph/file/402c519808f75bd9b1803.jpg",
@@ -130,16 +130,16 @@ async def alive(c: Client, message: Message):
     )
 
 
-@Client.on_message(command(["بنك", f"ping@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["/بنك", f"ping@{BOT_USERNAME}"]) & ~filters.edited)
 @check_blacklist()
 async def ping_pong(c: Client, message: Message):
     start = time()
     m_reply = await message.reply_text("جاري حساب البنك...")
     delta_ping = time() - start
-    await m_reply.edit_text("🏓 البنك !\n" f"⏱ `{delta_ping * 1000:.3f} مللي ثانية`")
+    await m_reply.edit_text(" البنك !\n" f"⏱ `{delta_ping * 1000:.3f} مللي ثانية`")
 
 
-@Client.on_message(command(["الوقت", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["/الوقت", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
 @check_blacklist()
 async def get_uptime(c: Client, message: Message):
     current_time = datetime.utcnow()
@@ -179,8 +179,8 @@ async def new_chat(c: Client, m: Message):
                     return await bot.leave_chat(chat_id)
             if member.id == me_bot.id:
                 return await m.reply(
-                    "🎗️ وأخيرا ضفتوني ، طبعاً شكراً للي ضافني !\n\n"                 
-                    "👍🏻 اضغط على زر الاوامر حتى تشوف شلون تشغلني ",
+                    " طبعاً شكراً للي ضافني !\n\n"                 
+                    " اضغط على زر الاوامر حتى تشوف شلون تشغلني ",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
