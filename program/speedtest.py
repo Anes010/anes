@@ -35,13 +35,13 @@ from pyrogram.types import Message
 @Client.on_message(command(["/اختبار السرعه", f"speedtest@{bname}"]) & ~filters.edited)
 @sudo_users_only
 async def run_speedtest(_, message: Message):
-    m = await message.reply_text("⚡️ running server speedtest")
+    m = await message.reply_text("⚡️ تشغيل اختبار سرعه الخادم")
     try:
         test = speedtest.Speedtest()
         test.get_best_server()
-        m = await m.edit("⚡️ running download speedtest..")
+        m = await m.edit("⚡️ تشغيل اختبار سرعه التحميل..")
         test.download()
-        m = await m.edit("⚡️ running upload speedtest...")
+        m = await m.edit("⚡️ تشغيل اختبار سرعه الرفع...")
         test.upload()
         test.results.share()
     except speedtest.ShareResultsConnectFailure:
@@ -50,7 +50,7 @@ async def run_speedtest(_, message: Message):
         await m.edit(e)
         return
     result = test.results.dict()
-    m = await m.edit("🔄 sharing speedtest results")
+    m = await m.edit("🔄 مشاركه نتائج اختبار السرعه")
     if result["share"]:
         path = wget.download(result["share"])
         try:
@@ -60,7 +60,7 @@ async def run_speedtest(_, message: Message):
         except BaseException:
             pass
 
-    output = f"""💡 **SpeedTest Results**
+    output = f"""💡 **نتائج اختبار السرعه**
     
 <u>**Client:**</u>
 **ISP:** {result['client']['isp']}
