@@ -61,7 +61,7 @@ async def update_admin(client, message: Message):
 
 
 @Client.on_message(
-    command(["كافي", f"اوكف", "ك", f"ايقاف", "انهاء"])
+    command(["/كافي", f"/اوكف/", "ك", f"/ايقاف/", "انهاء"])
     & other_filters
 )
 @authorized_users_only
@@ -78,11 +78,11 @@ async def stop(client, m: Message):
             traceback.print_exc()
             await m.reply_text(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply_text("لضوج ، ماެفي شي مشتغݪ ياެعيني🌵.")
+        await m.reply_text("لضوج ، ماެفي شي مشتغݪ ياެعيني.")
 
 
 @Client.on_message(
-    command(["توقف", f"pause@{BOT_USERNAME}", "vpause"]) & other_filters
+    command(["/توقف", f"pause@{BOT_USERNAME}", "vpause"]) & other_filters
 )
 @authorized_users_only
 @check_blacklist()
@@ -95,17 +95,17 @@ async def pause(client, m: Message):
             await calls.pause_stream(chat_id)
             await music_off(chat_id)
             await m.reply_text(
-                "⏸ **تم إيقاف المسار مؤقتًا.**\n\n• **لاستمرار الاغنية اكتب**\n»-›  استمرار"
+                "⏸ **تم إيقاف المسار مؤقتًا.**\n\n• **لاستمرار الاغنية اكتب**\n»-›  /استمرار"
             )
         except Exception as e:
             traceback.print_exc()
             await m.reply_text(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني🌵.")
+        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني.")
 
 
 @Client.on_message(
-    command(["استمرار", f"resume@{BOT_USERNAME}", "vresume"]) & other_filters
+    command(["/استمرار", f"resume@{BOT_USERNAME}", "vresume"]) & other_filters
 )
 @authorized_users_only
 @check_blacklist()
@@ -124,10 +124,10 @@ async def resume(client, m: Message):
             traceback.print_exc()
             await m.reply_text(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply_text("لضوج ، ماެفي شي مشتغݪ ياެعيني🌵.")
+        await m.reply_text("لضوج ، ماެفي شي مشتغݪ ياެعيني.")
 
 
-@Client.on_message(command(["تخطي", f"تخ", "التالي"]) & other_filters)
+@Client.on_message(command(["/تخطي", f"/تخ/", "التالي"]) & other_filters)
 @authorized_users_only
 @check_blacklist()
 async def skip(c: Client, m: Message):
@@ -135,9 +135,9 @@ async def skip(c: Client, m: Message):
     chat_id = m.chat.id
     queue = await skip_current_song(chat_id)
     if queue == 0:
-        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني🌵.")
+        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني.")
     elif queue == 1:
-        await m.reply_text(" لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني🌵..")
+        await m.reply_text(" لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني..")
     elif queue == 2:
         await m.reply_text("🗑️ تم مسح**الانتضار**\n\n» **والمساعد** غادر الدردشة الصوتية.")
     else:
@@ -153,13 +153,13 @@ async def skip(c: Client, m: Message):
             chat_id,
             photo=image,
             reply_markup=InlineKeyboardMarkup(buttons),
-            caption=f"⏭ **اެبشࢪ يحݪۅ** تم اެݪتخطي اެݪى اݪمساࢪ اެݪتالي.\n\n❤️‍🔥 **اެݪاެسم:** [{queue[0]}]({queue[1]})\n❤️‍🔥 **اެݪدࢪدشةه:** `{chat_id}`\n🦴 **طݪب اެݪحݪۅ:** {requester}",
+            caption=f"⏭ **اެبشࢪ يحݪۅ** تم اެݪتخطي اެݪى اݪمساࢪ اެݪتالي.\n\n **اެݪاެسم:** [{queue[0]}]({queue[1]})\n❤️‍🔥 **اެݪدࢪدشةه:** `{chat_id}`\n🦴 **طݪب اެݪحݪۅ:** {requester}",
         )
         remove_if_exists(image)
 
 
 @Client.on_message(
-    command(["كتم", f"اش", "vmute"]) & other_filters
+    command(["/كتم", f"/اش", "vmute"]) & other_filters
 )
 @authorized_users_only
 @check_blacklist()
@@ -172,17 +172,17 @@ async def mute(client, m: Message):
             await calls.mute_stream(chat_id)
             await music_off(chat_id)
             await m.reply_text(
-                "🔇 **تم كتم صوت المساعد.**\n\n• **لإلغاء كتم الصوت اكتب**\n» سولف"
+                "🔇 **تم كتم صوت المساعد.**\n\n• **لإلغاء كتم الصوت اكتب**\n» /سولف"
             )
         except Exception as e:
             traceback.print_exc()
             await m.reply_text(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني🌵.")
+        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني.")
 
 
 @Client.on_message(
-    command(["سولف", f"unmute@{BOT_USERNAME}", "vunmute"]) & other_filters
+    command(["/سولف", f"unmute@{BOT_USERNAME}", "vunmute"]) & other_filters
 )
 @authorized_users_only
 @check_blacklist()
@@ -195,17 +195,17 @@ async def unmute(client, m: Message):
             await calls.unmute_stream(chat_id)
             await music_on(chat_id)
             await m.reply_text(
-                "🔊 **تم الغاء الكتم.**\n\n• **لكتمة مره اخرى اكتب**\n» اش"
+                "🔊 **تم الغاء الكتم.**\n\n• **لكتمة مره اخرى اكتب**\n» /اش"
             )
         except Exception as e:
             traceback.print_exc()
             await m.reply_text(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني🌵.")
+        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني.")
 
 
 @Client.on_message(
-    command(["ضبط", f"اضبط", "vol"]) & other_filters
+    command(["/ضبط", f"/اضبط", "vol"]) & other_filters
 )
 @authorized_users_only
 @check_blacklist()
@@ -229,7 +229,7 @@ async def change_volume(c: Client, m: Message):
             traceback.print_exc()
             await m.reply_text(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني🌵.")
+        await m.reply_text("لضوج حبيبي ، ماެفي شي مشتغݪ ياެعيني.")
 
 
 @Client.on_callback_query(filters.regex("set_pause"))
