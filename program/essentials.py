@@ -195,6 +195,6 @@ async def active_group_calls(c: Client, message: Message):
         await message.reply_text("❌ لا يوجد هناك اي اتصال في الكروبات")
     else:
         await message.reply_text(
-            f"✏️ **قائمه الكروبات التي فيها اتصال:**\n\n{text}\n❖ This is the list of all current active group call in my database.",
+            f"✏️ **قائمه الكروبات التي فيها اتصال:**\n\n{text}\n❖ هذه هي قائمة بجميع المكالمات الجماعية النشطة الحالية في قاعدة البيانات الخاصة بي.",
             disable_web_page_preview=True,
         )
