@@ -39,20 +39,20 @@ from config import (
 async def start_set(_, query: CallbackQuery):
     await query.answer("home start")
     await query.edit_message_text(
-        f"""ههݪاެ حبيب [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) ❤️‍🔥\n
-اެناެ بَۅت بَمميࢪ࣪اެتَ متَعدَدةَ ݪتشغِيݪ اެݪاغاެنِي فَي اެݪمَجمَۅعاتَ 🥇.
+        f"""ههݪاެ حبيب [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) \n
+اެناެ بَۅت بَمميࢪ࣪اެتَ متَعدَدةَ ݪتشغِيݪ اެݪاغاެنِي فَي اެݪمَجمَۅعاتَ .
 
 -› [ᔕOᑌᖇᑕE ᒍEᑭTᕼOᑎ 𖢅](http://t.me/Jepthon)
 """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🥇 اެضفني اެݪى مجمۅعتَك 🥇", url=f"https://t.me/{me_bot.username}?startgroup=true")
+                    InlineKeyboardButton("ضيفني للكروب", url=f"https://t.me/{me_bot.username}?startgroup=true")
                 ],[
                     InlineKeyboardButton("طࢪيقة اެݪتشغيݪ", callback_data="user_guide")
                 ],[
                     InlineKeyboardButton(" اެݪاۅاެمࢪ", callback_data="command_list"),
-                    InlineKeyboardButton("🦎 اެݪمطَۅࢪ", url=f"https://t.me/{OWNER_USERNAME}")
+                    InlineKeyboardButton("المطور", url=f"https://t.me/{OWNER_USERNAME}")
                 ],
             ]
         ),
@@ -69,9 +69,9 @@ async def guide_set(_, query: CallbackQuery):
 
 1-› أولا ، أضفني الى مجموعتك
 2-› بعد ذالك قم برفعي كمشرف واعطائي صلاحيات مثل باقي البشر.
-3-› بعد ذالك اكتب `تحديث` بيانات البوت
-3-› اضف سيدي ومولاي @{me_user.username} في مجموعتك او اكتب `انضم او ادخل` لدعوة المساعد
-4-› اذ لم تستطيع اضافة المساعد او واجهت مشاكل تحدث مع رئيس الوزراء  .
+3-› بعد ذالك اكتب `/تحديث` بيانات البوت
+3-› اضف سيدي ومولاي @{me_user.username} في مجموعتك او اكتب `/انضم او /ادخل` لدعوة المساعد
+4-› اذ لم تستطيع اضافة المساعد او واجهت مشاكل تحدث مع رئيس الوزراء معرف رأيس الوزراء @N_B_1.
 
 """,
         reply_markup=InlineKeyboardMarkup(
@@ -88,7 +88,7 @@ async def guide_set(_, query: CallbackQuery):
 @check_blacklist()
 async def commands_set(_, query: CallbackQuery):
     user_id = query.from_user.id
-    await query.answer("👍🏻قائمة الاوامر")
+    await query.answer("قائمة الاوامر")
     await query.edit_message_text(
         f"""- تابع الازرار في الاسفل ↓
 
@@ -108,9 +108,9 @@ async def commands_set(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("user_command"))
 @check_blacklist()
 async def user_set(_, query: CallbackQuery):
-    await query.answer("👍🏻اوامر التشغيل")
+    await query.answer("اوامر التشغيل")
     await query.edit_message_text(
-        f"""- تابع الاوامر في الاسفل ↓
+        f"""- تابع الاوامر في الاسفل قبل كل امر لازم تخلي ( / ) ↓
 
 -› شغل - بالرد على ملف صوتي او اسم أغنيه
 -› اصعد - لصعود حساب المساعد في المكالمة
@@ -148,10 +148,10 @@ async def at_set_markup_menu(_, query: CallbackQuery):
     user_id = query.message.from_user.id
     buttons = menu_markup(user_id)
     if chat_id in QUEUE:
-        await query.answer("تم فتح لوحة التحكم 👍🏻")
+        await query.answer("تم فتح لوحة التحكم ")
         await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
     else:
-        await query.answer("لضوج ، ماكو شي مشتغݪ ياެعيني🌵.", show_alert=True)
+        await query.answer("لضوج ، ماكو شي مشتغݪ ياެعيني.", show_alert=True)
 
 
 @Client.on_callback_query(filters.regex("stream_home_panel"))
