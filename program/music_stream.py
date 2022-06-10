@@ -89,9 +89,9 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
         )
     if replied.audio or replied.voice:
         if not link:
-            suhu = await replied.reply("❤️‍🔥 تَحَمَيَݪ اެݪمَݪفَ...")
+            suhu = await replied.reply(" تَحَمَيَݪ اެݪمَݪفَ...")
         else:
-            suhu = await m.reply("❤️‍🔥 ࢪفَع اݪمَݪف...")
+            suhu = await m.reply(" ࢪفَع اݪمَݪف...")
         dl = await replied.download()
         link = replied.link
         songname = "music"
@@ -119,7 +119,7 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
             thumbnail = f"{IMG_5}"
 
         if chat_id in QUEUE:
-            await suhu.edit("❤️‍🔥 تَتم اެݪاضافَة...")
+            await suhu.edit(" تَتم اެݪاضافَة...")
             gcname = m.chat.title
             ctitle = await CHAT_TITLE(gcname)
             title = songname
@@ -145,7 +145,7 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
                 title = songname
                 userid = m.from_user.id
                 image = await thumb(thumbnail, title, userid, ctitle)
-                await suhu.edit("❤️‍🔥 يَتمَ اެݪتشغِيݪ اެلانِ...")
+                await suhu.edit("يَتمَ اެݪتشغِيݪ اެلانِ...")
                 await music_on(chat_id)
                 await add_active_chat(chat_id)
                 await calls.join_group_call(
@@ -182,7 +182,7 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
         )
 
 
-@Client.on_message(command(["شغل", f"ت"]) & other_filters)
+@Client.on_message(command(["/شغل", f"/ت"]) & other_filters)
 @check_blacklist()
 @require_admin(permissions=["can_manage_voice_chats", "can_delete_messages", "can_invite_users"], self=True)
 async def audio_stream(c: Client, m: Message):
@@ -199,7 +199,7 @@ async def audio_stream(c: Client, m: Message):
         b = await c.get_chat_member(chat_id, ubot)
         if b.status == "banned":
             try:
-                await m.reply_text("المساعد محظور ، ارفع الحظر عنة واكتب .تحديث وبعدين اكتب انضم حتى تكدر تشغل 🤍")
+                await m.reply_text("المساعد محظور ، ارفع الحظر عنة واكتب ./تحديث وبعدين اكتب /انضم حتى تكدر تشغل 🤍")
                 await remove_active_chat(chat_id)
             except BaseException:
                 pass
@@ -241,7 +241,7 @@ async def audio_stream(c: Client, m: Message):
                     "-› الرد على ملف صوتي او اكتب الاوامر لمعرفة استخدام البوت ."
                 )
             else:
-                suhu = await c.send_message(chat_id, "❤️‍🔥 جَاެࢪي اެݪبَحثَ...")
+                suhu = await c.send_message(chat_id, " جَاެࢪي اެݪبَحثَ...")
                 query = m.text.split(None, 1)[1]
                 search = ytsearch(query)
                 if search == 0:
@@ -261,7 +261,7 @@ async def audio_stream(c: Client, m: Message):
                         await suhu.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
                     else:
                         if chat_id in QUEUE:
-                            await suhu.edit("❤️‍🔥 تَتم اެݪاضافَة...")
+                            await suhu.edit(" تَتم اެݪاضافَة...")
                             pos = add_to_queue(
                                 chat_id, songname, ytlink, url, "music", 0
                             )
@@ -276,7 +276,7 @@ async def audio_stream(c: Client, m: Message):
                             remove_if_exists(image)
                         else:
                             try:
-                                await suhu.edit("❤️‍🔥 يَتمَ اެݪتشغِيݪ اެلانِ...")
+                                await suhu.edit(" يَتمَ اެݪتشغِيݪ اެلانِ...")
                                 await music_on(chat_id)
                                 await add_active_chat(chat_id)
                                 await calls.join_group_call(
@@ -302,7 +302,7 @@ async def audio_stream(c: Client, m: Message):
                             except (NoActiveGroupCall, GroupCallNotFound):
                                 await suhu.delete()
                                 await remove_active_chat(chat_id)
-                                await m.reply_text("🦴 شلون اشغل وماكو مكالمة جماعية بلكروب.\n\n-› اكتب .اصعد وحاول مره اخرى")
+                                await m.reply_text("🦴 شلون اشغل وماكو مكالمة جماعية بلكروب.\n\n-› اكتب /اصعد وحاول مره اخرى")
                             except NoAudioSourceFound:
                                 await suhu.delete()
                                 await remove_active_chat(chat_id)
@@ -310,7 +310,7 @@ async def audio_stream(c: Client, m: Message):
     else:
         if len(m.command) < 2:
             await m.reply(
-                "-› الرد على ملف صوتي او اكتب الاوامر لمعرفة استخدام البوت ."
+                "-› الرد على ملف صوتي او اكتب /الاوامر لمعرفة استخدام البوت ."
             )
         elif "t.me" in m.command[1]:
             for i in m.command[1:]:
@@ -318,7 +318,7 @@ async def audio_stream(c: Client, m: Message):
                     await play_tg_file(c, m, link=i)
                 continue
         else:
-            suhu = await c.send_message(chat_id, "❤️‍🔥 جَاެࢪي اެݪبَحثَ...")
+            suhu = await c.send_message(chat_id, "جَاެࢪي اެݪبَحثَ...")
             query = m.text.split(None, 1)[1]
             search = ytsearch(query)
             if search == 0:
@@ -338,7 +338,7 @@ async def audio_stream(c: Client, m: Message):
                     await suhu.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
                 else:
                     if chat_id in QUEUE:
-                        await suhu.edit("❤️‍🔥 تَتم اެݪاضافَة...")
+                        await suhu.edit(" تَتم اެݪاضافَة...")
                         pos = add_to_queue(chat_id, songname, ytlink, url, "music", 0)
                         await suhu.delete()
                         requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
@@ -351,7 +351,7 @@ async def audio_stream(c: Client, m: Message):
                         remove_if_exists(image)
                     else:
                         try:
-                            await suhu.edit("❤️‍🔥 يَتمَ اެݪتشغِيݪ اެلانِ...")
+                            await suhu.edit(" يَتمَ اެݪتشغِيݪ اެلانِ...")
                             await music_on(chat_id)
                             await add_active_chat(chat_id)
                             await calls.join_group_call(
